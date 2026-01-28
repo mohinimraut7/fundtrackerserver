@@ -599,7 +599,7 @@ exports.getSanctionedOrder = async (req, res) => {
 exports.updateRevenueActivityByOrderNo = async (req, res) => {
   try {
     const { sanctionedOrderNo } = req.params;
-    const { amountSpent, vendorBeneficiaryDetails } = req.body;
+    const { amountSpent, vendorBeneficiaryDetails,activityName,disburseDate } = req.body;
 
     if (!sanctionedOrderNo || !amountSpent) {
       return res.status(400).json({
@@ -662,10 +662,13 @@ exports.updateRevenueActivityByOrderNo = async (req, res) => {
       sanctionedOrderDate,
       amountSanctioned: sanctionedAmount,
       amountSpent: spend,              // 🔥 ONLY THIS DISBURSEMENT
+      disburseDate:disburseDate,
+      activityName:activityName,
       pendingAmount: pendingAfter,     // 🔥 AUTO CALCULATED
       vendorBeneficiaryDetails: vendorBeneficiaryDetails || "",
       billUcUpload: req.file ? req.file.path : "",
       createdAt: new Date(),
+
     });
 
     // ===============================
@@ -687,6 +690,8 @@ exports.updateRevenueActivityByOrderNo = async (req, res) => {
         disbursedAmount: spend,
         pendingAmount: pendingAfter,
         remainingAmount: revenue.remainingAmount,
+        disburseDate:disburseDate,
+        activityName:activityName
       },
     });
   } catch (error) {

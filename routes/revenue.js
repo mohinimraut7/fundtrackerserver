@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getRevenue, addRevenue,addRevenueActivity } = require("../controllers/revenue");
+const { getRevenue, addRevenue,addRevenueActivity,getSanctionedOrder,updateRevenueActivityByOrderNo } = require("../controllers/revenue");
 const uploadRevenue = require("../middlewares/uploadRevenue");
 const authMiddleware = require("../middlewares/auth");
 
@@ -61,6 +61,34 @@ router.post(
   },
   addRevenueActivity
 );
+router.get("/revenue/:sanctionedOrderNo",authMiddleware,getSanctionedOrder);
+
+
+
+// ================= UPDATE REVENUE ACTIVITY =================
+router.put(
+  "/revenue/activity/:sanctionedOrderNo",
+  authMiddleware,
+  (req, res, next) => {
+    uploadRevenue.single("billUcUpload")(req, res, (err) => {
+      if (err) {
+        if (err.code === "LIMIT_FILE_SIZE") {
+          return res.status(400).json({
+            success: false,
+            message: "File size जास्त आहे ❌ (Max 50MB allowed)",
+          });
+        }
+        return res.status(400).json({
+          success: false,
+          message: err.message || "File upload failed ❌",
+        });
+      }
+      next();
+    });
+  },
+  updateRevenueActivityByOrderNo
+);
+
 
 
 module.exports = router;

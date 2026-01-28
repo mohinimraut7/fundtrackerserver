@@ -143,6 +143,15 @@ const revenueSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+          disburseDate: {
+          type: Date,
+          required: true,
+        },
+        activityName: {
+          type: String,
+          default: "",
+        },
+
            pendingAmount: {          // ✅ THIS WAS MISSING
       type: Number,
       required: true,

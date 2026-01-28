@@ -144,8 +144,8 @@ const revenueSchema = new mongoose.Schema(
           required: true,
         },
           disburseDate: {
-          type: Date,
-          required: true,
+         type: Date,
+           default: Date.now,   // ✅ optional, fallback
         },
         activityName: {
           type: String,

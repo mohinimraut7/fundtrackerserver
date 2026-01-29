@@ -21,20 +21,18 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 const port = process.env.PORT || 5000;
 
-// ✅ MongoDB connect (FIX ✅)
+
 // mongoose
-//   .connect("mongodb://127.0.0.1:27017/fundallocationtracker")
-//   .then(() => console.log("✅ Local MongoDB fundallocationtracker connected"))
+//   .connect(
+//     "mongodb+srv://mohini:mohiniraut@cluster0.ogbdhu6.mongodb.net/fundallocationtracker?retryWrites=true&w=majority&appName=Cluster0"
+//   )
+//   .then(() => console.log("✅ MongoDB Atlas fundallocationtracker connected"))
 //   .catch((err) => console.log("❌ MongoDB connection error:", err));
 
-
 mongoose
-  .connect(
-    "mongodb+srv://mohini:mohiniraut@cluster0.ogbdhu6.mongodb.net/fundallocationtracker?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Atlas fundallocationtracker connected"))
   .catch((err) => console.log("❌ MongoDB connection error:", err));
-
 
 
 

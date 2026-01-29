@@ -164,7 +164,7 @@ const revenueSchema = new mongoose.Schema(
 
         billUcUpload: {
           type: String, // file path
-          required: true,
+          // required: true,
         },
 
         createdAt: {

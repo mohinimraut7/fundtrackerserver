@@ -15,10 +15,7 @@ env.config();
 
 app.use(
   cors({
-    origin: [
-      "https://fundallocationtracker.onrender.com", // Render URL
-      "http://localhost:5173" // local dev
-    ],
+    origin:"*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

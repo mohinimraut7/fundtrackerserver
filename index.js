@@ -12,12 +12,18 @@ const revenueRoutes = require("./routes/revenue");
 env.config();
 
 // app.use(cors());
+
 app.use(
   cors({
-    origin: "*", // later frontend URL टाकू शकतेस
+    origin: [
+      "https://fundallocationtracker.onrender.com", // Render URL
+      "http://localhost:5173" // local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
 

@@ -21,14 +21,6 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 const port = process.env.PORT || 5000;
 
-
-// mongoose
-//   .connect(
-//     "mongodb+srv://mohini:mohiniraut@cluster0.ogbdhu6.mongodb.net/fundallocationtracker?retryWrites=true&w=majority&appName=Cluster0"
-//   )
-//   .then(() => console.log("✅ MongoDB Atlas fundallocationtracker connected"))
-//   .catch((err) => console.log("❌ MongoDB connection error:", err));
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Atlas fundallocationtracker connected"))

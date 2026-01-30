@@ -141,7 +141,6 @@ const revenueSchema = new mongoose.Schema(
 
         amountSpent: {
           type: Number,
-          required: true,
         },
           disburseDate: {
          type: Date,

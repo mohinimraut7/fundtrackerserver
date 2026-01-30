@@ -153,7 +153,6 @@ const revenueSchema = new mongoose.Schema(
 
            pendingAmount: {          // ✅ THIS WAS MISSING
       type: Number,
-      required: true,
     },
 
         vendorBeneficiaryDetails: {
